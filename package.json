@@ -1,0 +1,16 @@
+{
+  "name": "river-club",
+  "version": "1.0.0",
+  "private": true,
+  "description": "No-limit Texas Hold'em room server — serves the table UI and deals every hand.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
