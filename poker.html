@@ -184,9 +184,12 @@ h1 em{font-style:italic;color:var(--brass)}
   align-items:center;justify-content:center;gap:12px;z-index:2;
 }
 .stage{font-size:10.5px;font-weight:600;letter-spacing:.34em;color:rgba(233,226,210,.55)}
-.slots{display:flex;gap:8px;--cw:60px}
+.slots{display:flex;gap:8px;--cw:68px}
 .slot{width:var(--cw);aspect-ratio:5/7;border:1px dashed rgba(233,226,210,.16);border-radius:6px;position:relative}
-.slot .card{position:absolute;inset:0;width:100%;--cw:100%}
+.slot .card{position:absolute;inset:0;width:100%;--cw:inherit}
+.slot .card .ix{font-size:calc(var(--cw)*.30)}
+.slot .card .ix i{font-size:calc(var(--cw)*.24)}
+.slot .card .pip{font-size:calc(var(--cw)*.55)}
 .pill{
   display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;
   color:rgba(233,226,210,.8);background:rgba(12,11,9,.55);
@@ -298,7 +301,7 @@ h1 em{font-style:italic;color:var(--brass)}
 @media (max-width:900px){
   .entry-wrap{grid-template-columns:1fr;gap:80px;max-width:460px}
   .fan{right:8px;top:-58px}.fan .card{--cw:88px}
-  .slots{--cw:44px;gap:6px}
+  .slots{--cw:48px;gap:6px}
   #hero{flex-wrap:wrap;gap:12px;padding:10px 14px}
   .seat .plate{min-width:80px;padding:5px 9px}
   .seat .nm{font-size:11.5px}.seat .stk{font-size:11px}
