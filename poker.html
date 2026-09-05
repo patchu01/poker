@@ -847,15 +847,26 @@ function renderSeats(S){
 function renderHero(S){
   const me = S.seats.find(s => s.pid === ME.pid);
   const mc = $('#my-cards');
-  mc.innerHTML = '';
-  if(me && me.dealt && !me.folded && S.phase !== 'lobby'){
-    const arr = (myCards && myCards.length) ? myCards : [null, null];
-    arr.forEach((c, j) => {
-      let e = c ? cardEl(c2s(c)) : Object.assign(document.createElement('div'), { className:'card back dealt' });
-      e.style.setProperty('--d', j);
-      mc.appendChild(e);
-    });
+
+  /* rebuild the hole cards only when they actually change —
+     otherwise every state tick replays the deal animation */
+  const showCards = me && me.dealt && !me.folded && S.phase !== 'lobby';
+  const key = showCards
+    ? `${S.handNo}:${(myCards && myCards.length) ? myCards.map(c2s).join('') : 'back'}`
+    : 'none';
+  if(mc.dataset.k !== key){
+    mc.dataset.k = key;
+    mc.innerHTML = '';
+    if(showCards){
+      const arr = (myCards && myCards.length) ? myCards : [null, null];
+      arr.forEach((c, j) => {
+        let e = c ? cardEl(c2s(c)) : Object.assign(document.createElement('div'), { className:'card back dealt' });
+        e.style.setProperty('--d', j);
+        mc.appendChild(e);
+      });
+    }
   }
+
   $('#my-name').textContent = me ? me.name : 'Spectator';
   $('#my-stack').textContent = me ? fmt(me.stack) : '0';
   const mb = $('#my-bet');
